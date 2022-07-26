@@ -86,13 +86,37 @@
                       scope="col"
                       class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Account Number
+                      Decorated Name
                     </th>
                     <th
                       scope="col"
                       class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Phone Number
+                      External Id
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Opening Date
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Hierarchy
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Parent Id
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Parent Name
                     </th>
                     <!-- <th
                       scope="col"
@@ -130,19 +154,43 @@
                       class="whitespace-nowrap py-3.5 pl-4 pr-3 text-sm text-left font-medium text-gray-900 sm:pl-6 lg:pl-8"
                       @click="setIsTable(true)"
                     >
-                      {{ domain.displayName }}
+                      {{ domain.name }}
                     </td>
                     <td
                       class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                       @click="setIsTable(true)"
                     >
-                      {{ domain.accountNo }}
+                      {{ domain.nameDecorated }}
                     </td>
                     <td
                       class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                       @click="setIsTable(true)"
                     >
-                      {{ domain.mobileNo }}
+                      {{ domain.externalId }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                      @click="setIsTable(true)"
+                    >
+                      {{ domain.openingDate }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                      @click="setIsTable(true)"
+                    >
+                      {{ domain.hierarchy }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                      @click="setIsTable(true)"
+                    >
+                      {{ domain.parentId }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                      @click="setIsTable(true)"
+                    >
+                      {{ domain.parentName }}
                     </td>
                   </tr>
                 </tbody>
@@ -683,7 +731,7 @@ export default {
         emailaddress: "",
         mobilenumber: "",
       },
-      borrowers: [],
+      domains: [],
     };
   },
   methods: {
@@ -707,7 +755,7 @@ export default {
       domainsAPI
         .get("/api/organization")
         .then((response) => {
-          this.borrowers = response.data.pageItems;
+          this.domains = response.data;
           console.log(response.data);
         })
         .catch((error) => {

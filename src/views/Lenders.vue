@@ -80,19 +80,37 @@
                       scope="col"
                       class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8"
                     >
-                      Name
+                      Username
                     </th>
                     <th
                       scope="col"
                       class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Account Number
+                      Office Id
                     </th>
                     <th
                       scope="col"
                       class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                     >
-                      Phone Number
+                      Office Name
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      First Name
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Last Name
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    >
+                      Email Address
                     </th>
                     <!-- <th
                       scope="col"
@@ -130,19 +148,37 @@
                       class="whitespace-nowrap py-3.5 pl-4 pr-3 text-sm text-left font-medium text-gray-900 sm:pl-6 lg:pl-8"
                       @click="setIsTable(true)"
                     >
-                      {{ lender.displayName }}
+                      {{ lender.username }}
                     </td>
                     <td
                       class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                       @click="setIsTable(true)"
                     >
-                      {{ lender.accountNo }}
+                      {{ lender.officeId }}
                     </td>
                     <td
                       class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                       @click="setIsTable(true)"
                     >
-                      {{ lender.mobileNo }}
+                      {{ lender.officeName }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                      @click="setIsTable(true)"
+                    >
+                      {{ lender.firstname }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                      @click="setIsTable(true)"
+                    >
+                      {{ lender.lastname }}
+                    </td>
+                    <td
+                      class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                      @click="setIsTable(true)"
+                    >
+                      {{ lender.email }}
                     </td>
                   </tr>
                 </tbody>
@@ -707,7 +743,7 @@ export default {
       lendersAPI
         .get("/api/users")
         .then((response) => {
-          this.lenders = response.data.pageItems;
+          this.lenders = response.data;
           console.log(response.data);
         })
         .catch((error) => {
