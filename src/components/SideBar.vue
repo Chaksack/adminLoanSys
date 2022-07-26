@@ -215,6 +215,8 @@
 const navigation = [
   { name: "Application", href: "/dashboard", icon: HomeIcon, current: false },
   { name: "Products", href: "/products", icon: FolderIcon, current: false },
+  { name: "Domains", href: "/domains", icon: UsersIcon, current: false },
+  { name: "Lenders", href: "/lenders", icon: UsersIcon, current: false },
   { name: "Borrowers", href: "/borrowers", icon: UsersIcon, current: false },
   // {
   //   name: "Disbursment",
