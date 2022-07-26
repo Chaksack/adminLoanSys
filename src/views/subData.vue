@@ -325,10 +325,10 @@
                                 >
                                   <button
                                     type="button"
-                                    @click="approveLoan()"
+                                    @click="disburseLoan()"
                                     class="mx-2 inline-flex items-center justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-lg font-bold text-white shadow-sm hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:w-auto"
                                   >
-                                    Approve
+                                    Disburse
                                   </button>
                                   <button
                                     type="button"
@@ -390,7 +390,7 @@ import {
 import { XIcon } from "@heroicons/vue/outline";
 
 export default {
-  name: "TableData",
+  name: "SubData",
   components: {
     Dialog,
     DialogPanel,
@@ -403,8 +403,7 @@ export default {
     return {
       // credit_details: null,
       credit: [],
-      savings: [],
-      tableData: [],
+      subData: [],
     };
   },
   props: ["applicationData"],
@@ -430,7 +429,7 @@ export default {
         .then((response) => {
           // this.getCreditApp = response.data.pageItems;
           this.credit = response.data.pageItems;
-          this.tableData = this.credit;
+          this.subData = this.credit;
         })
         .catch((error) => {
           console.log("There was an error:", error.data);

@@ -151,6 +151,7 @@
             <div>
               <UploadData v-if="showUpload" />
               <TableData v-if="showTable" />
+              <SubData v-if="showSub" />
             </div>
           </div>
         </div>
@@ -506,7 +507,8 @@
   <!-- Modal -->
   <div class="modal fixed my-32 w-[400px] h-[300px] bg-white rounded-xl z-30">
     <p class="info">{{ vResponse.message }}</p>
-    <p>{{ vResponse.data }}</p>
+    <p>{{ vResponse.member_status }}</p>
+    <p>{{ vResponse.member_type }}</p>
   </div>
 </template>
 
@@ -531,11 +533,14 @@ import { XIcon } from "@heroicons/vue/outline";
 import LocalStorageService from "../APIs/token";
 import UploadData from "./uploadData.vue";
 import TableData from "./tableData.vue";
+import SubData from "./subData.vue";
 
 const tabs = [
   { name: "Credit Application", current: true },
   { name: "Savings Application", current: false },
   { name: "Upload Application", current: false },
+  { name: "Await Disbursal", current: false },
+  { name: "Await Submission", current: false },
 ];
 
 export default {
@@ -554,10 +559,7 @@ export default {
     XIcon,
     UploadData,
     TableData,
-    // Menu,
-    // MenuButton,
-    // MenuItem,
-    // MenuItems,
+    SubData,
   },
   data() {
     return {
@@ -574,6 +576,7 @@ export default {
         interestType: "",
         linkAccountId: "",
         loanPurposeId: "",
+        loanProductDescription: "",
       },
       // uploadActive: false,
       val: {
@@ -638,6 +641,8 @@ export default {
         this.tabs[0].current = true;
         this.tabs[1].current = false;
         this.tabs[2].current = false;
+        this.tabs[3].current = false;
+        this.tabs[4].current = false;
         this.index = "Credit Applications";
         // this.tableData = this.credit;
       } else if (e == "Savings Application") {
@@ -646,6 +651,8 @@ export default {
         this.tabs[0].current = false;
         this.tabs[1].current = true;
         this.tabs[2].current = false;
+        this.tabs[3].current = false;
+        this.tabs[4].current = false;
         this.index = "Savings Application";
         // this.tableData = this.savings;
         console.log(this.tableData);
@@ -655,9 +662,35 @@ export default {
         this.tabs[0].current = false;
         this.tabs[1].current = false;
         this.tabs[2].current = true;
+        this.tabs[3].current = false;
+        this.tabs[4].current = false;
         this.index = "Upload Application";
         // this.uploadData = this.uploads;
         console.log(this.uploadData);
+      } else if (e == "Await Disbursal") {
+        this.showUpload = false;
+        this.showTable = false;
+        this.showData = true;
+        this.tabs[0].current = false;
+        this.tabs[1].current = false;
+        this.tabs[2].current = false;
+        this.tabs[3].current = true;
+        this.tabs[4].current = false;
+        this.index = "Await Disbursal";
+        // this.uploadData = this.uploads;
+        console.log(this.subData);
+      } else if (e == "Await Submission") {
+        this.showUpload = false;
+        this.showTable = false;
+        this.showData = true;
+        this.tabs[0].current = false;
+        this.tabs[1].current = false;
+        this.tabs[2].current = false;
+        this.tabs[3].current = false;
+        this.tabs[4].current = true;
+        this.index = "Await Submission";
+        // this.uploadData = this.uploads;
+        console.log(this.subData);
       }
     },
     postUploadApp() {
