@@ -505,7 +505,8 @@
   </div>
   <!-- Modal -->
   <div class="modal fixed my-32 w-[400px] h-[300px] bg-white rounded-xl z-30">
-    <p class="info">{{ index }}</p>
+    <p class="info">{{ vResponse.message }}</p>
+    <p>{{ vResponse.data }}</p>
   </div>
 </template>
 
@@ -581,18 +582,20 @@ export default {
         type: "identity",
         id: "",
       },
+      vResponse: {},
       tableData: [],
       uploadData: [],
       index: "Credit Application",
-      message: "",
       showUpload: false,
       showTable: false,
+      message: "",
     };
   },
+  // 1245796
 
   methods: {
-    showModal(msg) {
-      this.message = msg;
+    showModal() {
+      // this.message = message;
       let body = document.querySelector("body");
       let modal = document.querySelector(".modal");
       let overlay = document.querySelector("#overlay");
@@ -700,13 +703,16 @@ export default {
       vapiData
         .post(`/api/domain/verify`, this.val)
         .then((response) => {
-          this.val = response.data;
+          this.val = response.data.message;
+          this.vResponse = response.data;
+          console.log(this.vResponse);
           this.showModal(this.val);
         })
         // .then(this.val())
         .catch((error) => {
           this.val = error.data;
           this.message = error.response.data.message;
+          this.vResponse = error.response.data;
           this.showModal(this.message);
           console.log("There was an error:", error);
         });
@@ -761,15 +767,13 @@ export default {
     let CreateApplication = ref(null);
     // let isTable = ref(false);
     let val_details = ref(Object);
-    // let message = ref(null);
     return {
       tabs,
       isOpen,
       CreateApplication,
       // isTable,
       val_details,
-      // // eslint-disable-next-line vue/no-dupe-keys
-      // message,
+      // // eslint-disable-next-line vue/no-dupe-keys, vue/no-dupe-keys
       setIsOpen(value) {
         isOpen.value = value;
       },
@@ -805,6 +809,7 @@ export default {
 .modal {
   top: 35%;
   right: 50%;
+  color: #000000;
   transform: translate(50%, -50%);
   display: none;
 }

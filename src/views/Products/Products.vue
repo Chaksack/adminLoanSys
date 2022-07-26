@@ -940,13 +940,13 @@ export default {
       if (e == "Credit") {
         this.tabs[1].current = true;
         this.tabs[0].current = false;
-        this.index = "Savings";
-        this.tableData = this.savings;
+        this.index = "Credit";
+        this.tableData = this.credit;
       } else {
         this.tabs[0].current = true;
         this.tabs[1].current = false;
-        this.index = "Credit";
-        this.tableData = this.credit;
+        this.index = "Savings";
+        this.tableData = this.savings;
         console.log(this.tableData);
       }
     },

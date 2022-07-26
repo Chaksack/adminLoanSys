@@ -474,16 +474,50 @@
                                       <label
                                         for="mobilenumber"
                                         class="block text-sm font-medium text-gray-700"
-                                        >Mobile Number</label
+                                        >Office Id</label
                                       >
                                       <input
-                                        v-model="create.mobilenumber"
+                                        v-model="create.officeId"
                                         type="text"
                                         name="mobilenumber"
                                         id="mobilenumber"
                                         autocomplete="number"
                                         class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                       />
+                                    </div>
+                                    <div class="col-span-6 md:col-span-3">
+                                      <label
+                                        for="mobilenumber"
+                                        class="block text-sm font-medium text-gray-700"
+                                        >User Name</label
+                                      >
+                                      <input
+                                        v-model="create.userName"
+                                        type="text"
+                                        name="mobilenumber"
+                                        id="mobilenumber"
+                                        autocomplete="number"
+                                        class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                      />
+                                    </div>
+                                    <div class="col-span-6 md:col-span-3">
+                                      <label
+                                        for="officeName"
+                                        class="block text-sm font-medium text-gray-700"
+                                        >Office Name</label
+                                      >
+                                      <select
+                                        name="officaNames"
+                                        id="officeName"
+                                      >
+                                        <option value="1">Pavelon</option>
+                                        <option value="CML1">
+                                          Credit Mall Limited
+                                        </option>
+                                        <option value="JIREH1">
+                                          Jireh Micro Finance
+                                        </option>
+                                      </select>
                                     </div>
 
                                     <!-- <div class="col-span-6 sm:col-span-3">
@@ -566,7 +600,7 @@
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-lg font-bold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
                                         @click.prevent="createBorrower"
                                       >
-                                        Create Borrower
+                                        Create Lender
                                       </button>
                                     </div>
                                   </div>
