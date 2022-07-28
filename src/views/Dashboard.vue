@@ -636,6 +636,7 @@ export default {
       modal.classList.remove("open");
       modal.style.zindex = "-1";
       body.style.overflow = "auto";
+      this.$router.go();
     },
     handleFileUpload() {
       this.file = this.$refs.file.files[0];

@@ -929,8 +929,8 @@ export default {
       tableData: [],
       index: "Credit",
       tabs: [
-        { name: "Savings", current: true },
-        { name: "Credit", current: false },
+        { name: "Credit", current: true },
+        { name: "Savings", current: false },
       ],
     };
   },
@@ -938,13 +938,13 @@ export default {
     showData(e) {
       console.log(e);
       if (e == "Credit") {
-        this.tabs[1].current = true;
-        this.tabs[0].current = false;
+        this.tabs[0].current = true;
+        this.tabs[1].current = false;
         this.index = "Credit";
         this.tableData = this.credit;
       } else {
-        this.tabs[0].current = true;
-        this.tabs[1].current = false;
+        this.tabs[0].current = false;
+        this.tabs[1].current = true;
         this.index = "Savings";
         this.tableData = this.savings;
         console.log(this.tableData);
