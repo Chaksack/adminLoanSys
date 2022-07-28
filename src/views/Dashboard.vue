@@ -122,7 +122,7 @@
           </select>
         </div>
         <div class="hidden sm:block">
-          <div class="border-b border-gray-200">
+          <div class="border-b px-6 border-gray-200">
             <nav class="-mb-px flex space-x-8" aria-label="Tabs">
               <a
                 v-for="tab in tabs"
@@ -412,10 +412,10 @@
           </Dialog>
         </TransitionRoot>
       </div>
-      <div class="mt-4 mb-4 sm:mt-0 sm:flex-none">
+      <div class="mt-4 mx-6 mb-4 sm:mt-0 sm:flex-none">
         <button
           type="button"
-          class="ml-2 inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-lg font-bold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
+          class="ml-8 inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-4 text-lg font-bold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
           @click.prevent="createBorrower"
         >
           Download
@@ -426,7 +426,7 @@
       <!-- pagination -->
       <div>
         <nav
-          class="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0"
+          class="border-t mx-6 px-6 border-gray-200 flex items-center justify-between sm:px-0"
         >
           <div class="-mt-px ml-16 w-0 flex-1 flex">
             <a
