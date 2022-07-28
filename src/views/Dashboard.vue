@@ -151,7 +151,7 @@
             <div>
               <UploadData v-if="showUpload" />
               <TableData v-if="showTable" />
-              <SubData v-if="showSub" />
+              <SubData v-if="showSubData" />
             </div>
           </div>
         </div>
@@ -505,10 +505,28 @@
     </div>
   </div>
   <!-- Modal -->
-  <div class="modal fixed my-32 w-[400px] h-[300px] bg-white rounded-xl z-30">
+  <div
+    class="modal fixed py-6 my-32 w-[400px] h-[120px] bg-gray-900 rounded-xl z-30 font-bold text-xl text-white"
+  >
     <p class="info">{{ vResponse.message }}</p>
-    <p>{{ vResponse.member_status }}</p>
-    <p>{{ vResponse.member_type }}</p>
+    <div>
+      <p>
+        <label class="px-2">
+          Member status:
+
+          {{ vResponse.member_status }}
+        </label>
+      </p>
+    </div>
+    <div>
+      <p>
+        <label class="px-2">
+          Member type:
+
+          {{ vResponse.member_type }}
+        </label>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -539,8 +557,7 @@ const tabs = [
   { name: "Credit Application", current: true },
   { name: "Savings Application", current: false },
   { name: "Upload Application", current: false },
-  { name: "Await Disbursal", current: false },
-  { name: "Await Submission", current: false },
+  { name: "Disbursal/Submission", current: false },
 ];
 
 export default {
@@ -588,9 +605,11 @@ export default {
       vResponse: {},
       tableData: [],
       uploadData: [],
+      subData: [],
       index: "Credit Application",
       showUpload: false,
       showTable: false,
+      showSubData: false,
       message: "",
     };
   },
@@ -638,6 +657,7 @@ export default {
       if (e == "Credit Application") {
         this.showUpload = false;
         this.showTable = true;
+        this.showSubData = false;
         this.tabs[0].current = true;
         this.tabs[1].current = false;
         this.tabs[2].current = false;
@@ -648,6 +668,7 @@ export default {
       } else if (e == "Savings Application") {
         this.showUpload = false;
         this.showTable = false;
+        this.showSubData = false;
         this.tabs[0].current = false;
         this.tabs[1].current = true;
         this.tabs[2].current = false;
@@ -659,6 +680,7 @@ export default {
       } else if (e == "Upload Application") {
         this.showUpload = true;
         this.showTable = false;
+        this.showSubData = false;
         this.tabs[0].current = false;
         this.tabs[1].current = false;
         this.tabs[2].current = true;
@@ -667,30 +689,18 @@ export default {
         this.index = "Upload Application";
         // this.uploadData = this.uploads;
         console.log(this.uploadData);
-      } else if (e == "Await Disbursal") {
+      } else if (e == "Disbursal/Submission") {
         this.showUpload = false;
         this.showTable = false;
-        this.showData = true;
+        this.showSubData = true;
         this.tabs[0].current = false;
         this.tabs[1].current = false;
         this.tabs[2].current = false;
         this.tabs[3].current = true;
         this.tabs[4].current = false;
-        this.index = "Await Disbursal";
+        this.index = "Disbursal/Submission";
         // this.uploadData = this.uploads;
-        console.log(this.subData);
-      } else if (e == "Await Submission") {
-        this.showUpload = false;
-        this.showTable = false;
-        this.showData = true;
-        this.tabs[0].current = false;
-        this.tabs[1].current = false;
-        this.tabs[2].current = false;
-        this.tabs[3].current = false;
-        this.tabs[4].current = true;
-        this.index = "Await Submission";
-        // this.uploadData = this.uploads;
-        console.log(this.subData);
+        console.log(this.showSubData);
       }
     },
     postUploadApp() {
@@ -842,7 +852,7 @@ export default {
 .modal {
   top: 35%;
   right: 50%;
-  color: #000000;
+  color: white;
   transform: translate(50%, -50%);
   display: none;
 }
