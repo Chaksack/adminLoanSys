@@ -403,7 +403,7 @@ export default {
     return {
       // credit_details: null,
       credit: [],
-      appData: [],
+      submissionData: [],
     };
   },
   props: ["applicationData"],

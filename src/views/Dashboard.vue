@@ -7,7 +7,7 @@
     </div>
     <div class="relative top-16 right-11 px-10 sm:px-6 lg:px-8 flex-1">
       <div class="sm:flex sm:items-center">
-        <div class="mt-4 sm:mt-0 sm:ml-11 sm:flex-none">
+        <div class="mt-4 sm:mt-0 md:ml-11 sm:flex-none">
           <h3
             class="inline-flex justify-center w-full font-sans font-bold text-4xl text-gray-700"
           >
@@ -31,7 +31,7 @@
           </button>
         </div>
       </div>
-      <form class="w-full ml-16 max-w-sm">
+      <!-- <form class="w-full ml-16 max-w-sm">
         <div class="flex items-center border-b border-gray-100 py-2">
           <input
             class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
@@ -59,9 +59,9 @@
             </svg>
           </button>
         </div>
-      </form>
+      </form> -->
       <form class="w-full ml-16 max-w-sm">
-        <div class="flex items-center border-b border-gray-100 py-2">
+        <div class="flex py-11 items-center border-b border-gray-100">
           <input
             class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
             type="text"
@@ -79,19 +79,6 @@
         </div>
       </form>
       <div class="mt-2 mb-4 sm:mt-0 flex justify-end">
-        <!-- <buttonda
-          type="file"
-          class="ml-2 inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
-          @click.prevent="createBorrower"
-          id="file_input"
-        >
-          Upload
-        </button> -->
-        <!-- <label
-          class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          for="file_input"
-          >Upload file</label
-        > -->
         <input
           class="ml-2 form-control inline-flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-sm font-bold text-white shadow-sm hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
           id="file_input"
@@ -152,6 +139,8 @@
               <UploadData v-if="showUpload" />
               <TableData v-if="showTable" />
               <SubData v-if="showSubData" />
+              <AppData v-if="showAppData" />
+              <SubmissionData v-if="showSubmissionData" />
             </div>
           </div>
         </div>
@@ -425,9 +414,7 @@
       <!-- end create slider -->
       <!-- pagination -->
       <div>
-        <nav
-          class="border-t mx-6 px-6 border-gray-200 flex items-center justify-between sm:px-0"
-        >
+        <nav class="flex items-center justify-between sm:px-0">
           <div class="-mt-px ml-16 w-0 flex-1 flex">
             <a
               href="#"
@@ -557,7 +544,8 @@ const tabs = [
   { name: "Credit Application", current: true },
   { name: "Savings Application", current: false },
   { name: "Upload Application", current: false },
-  { name: "Disbursal/Submission", current: false },
+  { name: "Disbursal", current: false },
+  { name: "Submission", current: false },
 ];
 
 export default {
@@ -659,6 +647,7 @@ export default {
         this.showUpload = false;
         this.showTable = true;
         this.showSubData = false;
+        this.appData = true;
         this.tabs[0].current = true;
         this.tabs[1].current = false;
         this.tabs[2].current = false;
@@ -670,6 +659,7 @@ export default {
         this.showUpload = false;
         this.showTable = false;
         this.showSubData = false;
+        this.appData = true;
         this.tabs[0].current = false;
         this.tabs[1].current = true;
         this.tabs[2].current = false;
@@ -682,6 +672,7 @@ export default {
         this.showUpload = true;
         this.showTable = false;
         this.showSubData = false;
+        this.appData = true;
         this.tabs[0].current = false;
         this.tabs[1].current = false;
         this.tabs[2].current = true;
@@ -694,6 +685,7 @@ export default {
         this.showUpload = false;
         this.showTable = false;
         this.showSubData = true;
+        this.appData = true;
         this.tabs[0].current = false;
         this.tabs[1].current = false;
         this.tabs[2].current = false;
@@ -702,6 +694,19 @@ export default {
         this.index = "Disbursal/Submission";
         // this.uploadData = this.uploads;
         console.log(this.showSubData);
+      } else if (e == "Test") {
+        this.showUpload = false;
+        this.showTable = false;
+        this.showSubData = false;
+        this.appData = true;
+        this.tabs[0].current = false;
+        this.tabs[1].current = false;
+        this.tabs[2].current = false;
+        this.tabs[3].current = false;
+        this.tabs[4].current = true;
+        this.index = "Test";
+        // this.uploadData = this.uploads;
+        console.log(this.appData);
       }
     },
     postUploadApp() {
