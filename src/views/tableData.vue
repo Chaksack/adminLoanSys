@@ -52,7 +52,7 @@
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
               <tr
-                v-for="(credit, index) in tableData"
+                v-for="(credit, index) in tableData[pagination]"
                 :key="index"
                 @click="setIsTable(true, credit.id)"
               >
@@ -407,8 +407,17 @@ export default {
       tableData: [],
     };
   },
-  props: ["applicationData"],
+  props: { pagination: { type: Object, required: true } },
   methods: {
+    createChunk(array, chunkSize) {
+      let index = 0;
+      let arrayLength = array.length;
+      let tempArray = [];
+      for (index = 0; index < arrayLength; index += chunkSize) {
+        tempArray.push(array.slice(index, index + chunkSize));
+      }
+      return tempArray;
+    },
     getCreditApp() {
       const creditAPI = axios.create({
         baseURL: "https://api.sandbox.pavelon.com",
@@ -430,7 +439,9 @@ export default {
         .then((response) => {
           // this.getCreditApp = response.data.pageItems;
           this.credit = response.data.pageItems;
-          this.tableData = this.credit;
+          this.tableData = this.createChunk(this.credit, 50);
+          // console.log(this.tableData[0]);
+          // this.tableData = this.temp[0];
         })
         .catch((error) => {
           console.log("There was an error:", error.data);
