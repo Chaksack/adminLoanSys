@@ -137,7 +137,7 @@
             </nav>
             <div>
               <UploadData v-if="showUpload" />
-              <TableData v-if="showTable" />
+              <TableData v-if="showTable" :pagination="paginate.currentPage" />
               <SubData v-if="showSubData" />
               <AppData v-if="showAppData" />
               <SubmissionData v-if="showSubmissionData" />
@@ -428,49 +428,48 @@
             </a>
           </div>
           <div class="hidden md:-mt-px md:flex">
-            <a
-              href="#"
-              class="border-gray-500 text-gray-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+            <div
+              class="border-gray-500 text-gray-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium cursor-pointer"
               aria-current="page"
+              @click="paginate.currentPage = 0"
             >
               1
-            </a>
-            <a
-              href="#"
-              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+            </div>
+            <div
+              class="border-gray-500 text-gray-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium cursor-pointer"
+              aria-current="page"
+              @click="paginate.currentPage = 1"
             >
               2
-            </a>
-            <!-- Current: "border-indigo-500 text-indigo-600", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
-            <a
-              href="#"
-              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+            </div>
+            <div
+              class="border-gray-500 text-gray-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium cursor-pointer"
+              aria-current="page"
+              @click="paginate.currentPage = 2"
             >
               3
-            </a>
-            <span
-              class="border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+            </div>
+            <div
+              class="border-gray-500 text-gray-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium cursor-pointer"
+              aria-current="page"
+              @click="paginate.currentPage = 3"
             >
-              ...
-            </span>
-            <a
-              href="#"
-              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+              4
+            </div>
+            <!-- <div
+              class="border-gray-500 text-gray-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium cursor-pointer"
+              aria-current="page"
+              @click="paginate.currentPage = 4"
             >
-              8
-            </a>
-            <a
-              href="#"
-              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+              5
+            </div>
+            <div
+              class="border-gray-500 text-gray-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium cursor-pointer"
+              aria-current="page"
+              @click="paginate.currentPage = 5"
             >
-              9
-            </a>
-            <a
-              href="#"
-              class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
-            >
-              10
-            </a>
+              6
+            </div> -->
           </div>
           <div class="-mt-px w-0 flex-1 flex justify-end">
             <a
@@ -599,6 +598,10 @@ export default {
       showTable: false,
       showSubData: false,
       message: "",
+      paginate: {
+        currentPage: 0,
+        pageSize: 10,
+      },
     };
   },
   // 1245796
@@ -642,7 +645,6 @@ export default {
     //   formData.append("file", this.file);
     // },
     showData(e) {
-      console.log(e);
       if (e == "Credit Application") {
         this.showUpload = false;
         this.showTable = true;
