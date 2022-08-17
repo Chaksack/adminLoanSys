@@ -543,8 +543,7 @@ const tabs = [
   { name: "Credit Application", current: true },
   { name: "Savings Application", current: false },
   { name: "Upload Application", current: false },
-  { name: "Disbursal", current: false },
-  { name: "Submission", current: false },
+  { name: "Disbursal/Submission", current: false },
 ];
 
 export default {
