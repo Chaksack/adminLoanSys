@@ -2,11 +2,27 @@
   <div class="justify-start">
     <button
       type="button"
+      class="inline-flex rounded-md border border-transparent bg-gray-400 px-4 py-2 text-lg font-bold text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
+      ref="CreateApplication"
+      @click="getPendingUpload()"
+    >
+      Pending
+    </button>
+    <button
+      type="button"
       class="inline-flex mx-4 px-4 rounded-md border border-transparent bg-gray-400 py-2 text-lg font-bold text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
       ref="CreateApplication"
       @click="getUploadApp()"
     >
       Active
+    </button>
+    <button
+      type="button"
+      class="inline-flex mx-4 px-4 rounded-md border border-transparent bg-gray-400 py-2 text-lg font-bold text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
+      ref="CreateApplication"
+      @click="getSubmittedApp()"
+    >
+      Submitted
     </button>
     <button
       type="button"
@@ -220,6 +236,33 @@ export default {
           console.log("There was an error:", error.data);
         });
     },
+    getPendingUpload() {
+      const pendingUploadAPI = axios.create({
+        baseURL: "https://api.sandbox.pavelon.com",
+        headers: {
+          Authorization: "Bearer " + LocalStorageService.getAccessToken(),
+          "x-api-key": "x64cRjHA3240SSdfdk",
+          "x-api-version": "v3",
+          "xbs-token": LocalStorageService.getXbsToken(),
+        },
+      });
+
+      // extAPI.interceptors.request.use((config) => {
+      //   config.headers["Authorization"] =
+      //     "Bearer " + localStorage.getItem("token");
+      // });
+
+      pendingUploadAPI
+        .get("api/cmlcredit/current")
+        .then((response) => {
+          // this.getCreditApp = response.data.pageItems;
+          this.uploads = response.data;
+          this.uploadData = this.uploads;
+        })
+        .catch((error) => {
+          console.log("There was an error:", error.data);
+        });
+    },
     getInactiveUpload() {
       const inactiveUploadAPI = axios.create({
         baseURL: "https://api.sandbox.pavelon.com",
@@ -238,6 +281,33 @@ export default {
 
       inactiveUploadAPI
         .get("api/cmlcredit/Inactive")
+        .then((response) => {
+          // this.getCreditApp = response.data.pageItems;
+          this.uploads = response.data;
+          this.uploadData = this.uploads;
+        })
+        .catch((error) => {
+          console.log("There was an error:", error.data);
+        });
+    },
+    getSubmittedUpload() {
+      const submittedUploadAPI = axios.create({
+        baseURL: "https://api.sandbox.pavelon.com",
+        headers: {
+          Authorization: "Bearer " + LocalStorageService.getAccessToken(),
+          "x-api-key": "x64cRjHA3240SSdfdk",
+          "x-api-version": "v3",
+          "xbs-token": LocalStorageService.getXbsToken(),
+        },
+      });
+
+      // extAPI.interceptors.request.use((config) => {
+      //   config.headers["Authorization"] =
+      //     "Bearer " + localStorage.getItem("token");
+      // });
+
+      submittedUploadAPI
+        .get("api/cmlcredit/submitted")
         .then((response) => {
           // this.getCreditApp = response.data.pageItems;
           this.uploads = response.data;
