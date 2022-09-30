@@ -42,6 +42,12 @@
                 >
                   Principal Amount
                 </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
+                  Status
+                </th>
                 <!-- <th
                       scope="col"
                       class="relative py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8"
@@ -72,31 +78,31 @@
                   class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                   @click="setIsTable(true)"
                 >
-                  {{ credit.clientName }}
+                  {{ credit.client }}
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                   @click="setIsTable(true)"
                 >
-                  {{ credit.clientId }}
+                  {{ credit.productId }}
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                   @click="setIsTable(true)"
                 >
-                  {{ credit.clientOfficeId }}
+                  {{ credit.productName }}
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                   @click="setIsTable(true)"
                 >
-                  {{ credit.approvedPrincipal }}
+                  {{ credit.principal }}
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
                   @click="setIsTable(true)"
                 >
-                  {{ credit.currencyCode }}
+                  {{ credit.refStatus }}
                 </td>
               </tr>
             </tbody>
@@ -435,10 +441,10 @@ export default {
       // });
 
       creditAPI
-        .get("/api/credit")
+        .get("/api/credits")
         .then((response) => {
           // this.getCreditApp = response.data.pageItems;
-          this.credit = response.data.pageItems;
+          this.credit = response.data.data;
           this.tableData = this.createChunk(this.credit, 50);
           // console.log(this.tableData[0]);
           // this.tableData = this.temp[0];

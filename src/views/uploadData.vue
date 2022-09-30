@@ -20,7 +20,7 @@
       type="button"
       class="inline-flex mx-4 px-4 rounded-md border border-transparent bg-gray-400 py-2 text-lg font-bold text-white shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 sm:w-auto"
       ref="CreateApplication"
-      @click="getSubmittedApp()"
+      @click="getSubmittedUpload()"
     >
       Submitted
     </button>
@@ -340,7 +340,7 @@ export default {
     },
   },
   mounted() {
-    this.getUploadApp();
+    this.getPendingUpload();
   },
 };
 </script>
