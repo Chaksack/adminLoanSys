@@ -502,7 +502,7 @@ export default {
           console.log("There was an error:", error.data);
         });
     },
-    disburseLoan(loadId) {
+    disburseLoan(loanId) {
       const apiData = axios.create({
         baseURL: "https://api.sandbox.pavelon.com",
         headers: {
@@ -515,7 +515,7 @@ export default {
 
       // isTable.value = false;
       apiData
-        .post(`/api/credit/${loadId}/disburse`)
+        .post(`/api/credit/${loanId}/disburse`)
         .then((response) => {
           this.acc_details = response.data;
         })
@@ -524,7 +524,7 @@ export default {
           console.log("There was an error:", error.data);
         });
     },
-    approveLoan(loadId) {
+    approveLoan(loanId) {
       const approveData = axios.create({
         baseURL: "https://api.sandbox.pavelon.com",
         headers: {
@@ -537,7 +537,7 @@ export default {
 
       // isTable.value = false;
       approveData
-        .post(`/api/credit/${loadId}`)
+        .post(`/api/credit/${loanId}`)
         .then((response) => {
           this.acc_details = response.data;
         })
@@ -546,7 +546,7 @@ export default {
           console.log("There was an error:", error.data);
         });
     },
-    rejectLoan(loadId) {
+    rejectLoan(loanId) {
       const rejectData = axios.create({
         baseURL: "https://api.sandbox.pavelon.com",
         headers: {
@@ -559,7 +559,7 @@ export default {
 
       // isTable.value = false;
       rejectData
-        .post(`/api/creditApplication/${loadId}`)
+        .post(`/api/creditApplication/${loanId}`)
         .then((response) => {
           this.acc_details = response.data;
         })
