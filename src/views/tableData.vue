@@ -46,7 +46,19 @@
                   scope="col"
                   class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
+                  Client Name
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
                   Principal Amount
+                </th>
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
+                  RefStatus
                 </th>
                 <th
                   scope="col"
@@ -115,6 +127,12 @@
                   @click="setIsTable(true)"
                 >
                   {{ credit.refStatus }}
+                </td>
+                <td
+                  class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                  @click="setIsTable(true)"
+                >
+                  {{ credit.status }}
                 </td>
               </tr>
             </tbody>
