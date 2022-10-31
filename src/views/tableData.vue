@@ -24,11 +24,17 @@
                 >
                   Name
                 </th>
-                <th
+                <!-- <th
                   scope="col"
                   class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
                   Client ID
+                </th> -->
+                <th
+                  scope="col"
+                  class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
+                  Mobile No
                 </th>
                 <th
                   scope="col"
@@ -79,6 +85,12 @@
                   @click="setIsTable(true)"
                 >
                   {{ credit.client }}
+                </td>
+                <td
+                  class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
+                  @click="setIsTable(true)"
+                >
+                  {{ credit.mobileNo }}
                 </td>
                 <td
                   class="whitespace-nowrap px-3 py-3.5 text-sm text-left text-gray-500"
